@@ -739,7 +739,14 @@ export default function HomePage() {
         <div className="topbar-left">タスク一覧</div>
         <div className="topbar-right">
           <div className="topbar-icon">🔔</div>
-          <div className="topbar-icon">🔄</div>
+          <button
+            type="button"
+            className="topbar-icon"
+            onClick={() => window.location.reload()}
+            style={{ border: 'none', color: '#fff' }}
+          >
+            🔄
+          </button>
           <button className="topbar-icon" onClick={toggleDeleteMode} style={{ border: 'none', color: '#fff' }}>🗑</button>
           <button className="delete-btn" onClick={deleteSelected} style={{ display: deleteMode ? 'inline-block' : 'none' }}>削除確定</button>
           <button className="delete-btn" onClick={() => { setDeleteMode(false); setSelectedIds([]) }} style={{ display: deleteMode ? 'inline-block' : 'none' }}>キャンセル</button>
