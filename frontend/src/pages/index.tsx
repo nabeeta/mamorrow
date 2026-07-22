@@ -561,6 +561,18 @@ export default function HomePage() {
           font-size: 14px;
           box-sizing: border-box;
         }
+        .topbar-avatar-button {
+          border: none;
+          background: rgba(255,255,255,0.15);
+          color: #fff;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          cursor: pointer;
+        }
+        .topbar-avatar-button:hover {
+          background: rgba(255,255,255,0.25);
+        }
         .hidden-date-input {
           display: none;
         }
@@ -732,7 +744,9 @@ export default function HomePage() {
           <button className="delete-btn" onClick={deleteSelected} style={{ display: deleteMode ? 'inline-block' : 'none' }}>削除確定</button>
           <button className="delete-btn" onClick={() => { setDeleteMode(false); setSelectedIds([]) }} style={{ display: deleteMode ? 'inline-block' : 'none' }}>キャンセル</button>
           <div className="topbar-user">
-            <div className="topbar-avatar">加藤葵</div>
+            <button className="topbar-avatar-button" onClick={() => alert('ユーザーアイコンがクリックされました')}>
+              加藤葵
+            </button>
           </div>
         </div>
       </header>
