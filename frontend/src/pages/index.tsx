@@ -115,7 +115,7 @@ export default function HomePage() {
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   const [memoTargetId, setMemoTargetId] = useState<number | null>(null)
   const [memoDraft, setMemoDraft] = useState('')
-  const [editingField, setEditingField] = useState<{ id: number; kind: 'deadline' | 'scheduled' | 'registered' } | null>(null)
+  const [editingField, setEditingField] = useState<{ id: number; kind: 'deadline' | 'scheduled' | 'registered' | 'media' } | null>(null)
 
   const activeTasks = useMemo(() => tasks.filter((task) => !task.completed), [tasks])
   const completedTasks = useMemo(() => tasks.filter((task) => task.completed), [tasks])
@@ -319,14 +319,14 @@ export default function HomePage() {
       <td>
         {task.media ? (
           <>
-            <span className="media-display" onClick={() => !deleteMode && setEditingField({ id: task.id, kind: 'registered' })}>
+            <span className="media-display" onClick={() => !deleteMode && setEditingField({ id: task.id, kind: 'media' })}>
               {task.media}
             </span>
             <select
               className="media-select hidden-media-select"
               value={task.media}
               onChange={(event) => updateTask(task.id, (item) => ({ ...item, media: event.target.value }))}
-              style={{ display: editingField?.id === task.id && editingField.kind === 'registered' ? 'inline-block' : 'none' }}
+              style={{ display: editingField?.id === task.id && editingField.kind === 'media' ? 'inline-block' : 'none' }}
               onBlur={() => setEditingField(null)}
               autoFocus
             >
