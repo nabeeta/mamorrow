@@ -318,24 +318,25 @@ export default function HomePage() {
       </td>
       <td>
         {task.media ? (
-          <>
-            <span className="media-display" onClick={() => !deleteMode && setEditingField({ id: task.id, kind: 'media' })}>
-              {task.media}
-            </span>
+          editingField?.id === task.id && editingField.kind === 'media' ? (
             <select
-              className="media-select hidden-media-select"
+              className="media-select"
               value={task.media}
               onChange={(event) => updateTask(task.id, (item) => ({ ...item, media: event.target.value }))}
-              style={{ display: editingField?.id === task.id && editingField.kind === 'media' ? 'inline-block' : 'none' }}
               onBlur={() => setEditingField(null)}
               autoFocus
+              style={{ width: '100%', boxSizing: 'border-box' }}
             >
               <option value="メール">メール</option>
               <option value="Teams">Teams</option>
               <option value="口頭">口頭</option>
               <option value="その他">その他</option>
             </select>
-          </>
+          ) : (
+            <span className="media-display" onClick={() => !deleteMode && setEditingField({ id: task.id, kind: 'media' })}>
+              {task.media}
+            </span>
+          )
         ) : null}
       </td>
       <td>
@@ -542,9 +543,25 @@ export default function HomePage() {
           padding: 6px 10px;
           border-radius: 12px;
           background: #f1f5fb;
+          display: inline-flex;
+          align-items: center;
+          width: 100%;
+          box-sizing: border-box;
         }
-        .hidden-date-input,
-        .hidden-media-select {
+        .date-display {
+          min-height: 32px;
+        }
+        .media-select {
+          width: 100%;
+          padding: 6px 10px;
+          border-radius: 12px;
+          background: #fff;
+          border: 1px solid #d1d9e6;
+          outline: none;
+          font-size: 14px;
+          box-sizing: border-box;
+        }
+        .hidden-date-input {
           display: none;
         }
         .add-row-btn {
